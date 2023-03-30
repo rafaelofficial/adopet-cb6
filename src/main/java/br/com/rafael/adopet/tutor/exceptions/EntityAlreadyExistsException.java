@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-public class EntityAlreadyExistsException extends Exception {
+public class EntityAlreadyExistsException extends RuntimeException {
 
 		public EntityAlreadyExistsException(String message) {
 				super(message);

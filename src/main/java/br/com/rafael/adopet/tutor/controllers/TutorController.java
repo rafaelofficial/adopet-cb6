@@ -1,26 +1,27 @@
 package br.com.rafael.adopet.tutor.controllers;
 
+import br.com.rafael.adopet.tutor.dto.TutorDto;
 import br.com.rafael.adopet.tutor.entities.Tutor;
-import br.com.rafael.adopet.tutor.repository.TutorRepository;
-import org.springframework.web.bind.annotation.GetMapping;
+import br.com.rafael.adopet.tutor.services.TutorService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/v1/adopet/")
+@RequestMapping("/api/v1/adopet/tutor/")
 public class TutorController {
 
-		final TutorRepository tutorRepository;
+		private final TutorService tutorService;
 
-		public TutorController(TutorRepository tutorRepository) {
-				this.tutorRepository = tutorRepository;
+		public TutorController(TutorService tutorService) {
+				this.tutorService = tutorService;
 		}
 
-		@GetMapping
-		public List<Tutor> getTutor() {
-				return tutorRepository.findAll();
+		@PostMapping
+		public ResponseEntity<TutorDto> createTutor(@RequestBody Tutor tutor) {
+				var newTutor = this.tutorService.createTutor(tutor);
+				return ResponseEntity.ok().body(newTutor.toTutorDto());
 		}
-
 }
