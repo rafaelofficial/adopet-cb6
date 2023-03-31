@@ -1,10 +1,11 @@
 package br.com.rafael.adopet.tutor.dto;
 
-import br.com.rafael.adopet.tutor.entities.Tutor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Builder
 @Getter
@@ -12,11 +13,12 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TutorDto {
 		private Long id;
-		private String nome;
-		private String telefone;
-		private String cidade;
-		private String sobre;
-		private String fotoDePerfil;
+		private String name;
 		private String email;
-		private String senha;
+		private String password;
+		private String phone;
+		private String city;
+		private String pictureProfileUrl;
+		private String about;
+		private LocalDateTime createdAt;
 }

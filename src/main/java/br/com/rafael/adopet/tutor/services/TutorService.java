@@ -1,6 +1,6 @@
 package br.com.rafael.adopet.tutor.services;
 
-import br.com.rafael.adopet.tutor.entities.Tutor;
+import br.com.rafael.adopet.tutor.domain.Tutor;
 import br.com.rafael.adopet.tutor.exceptions.EntityAlreadyExistsException;
 import br.com.rafael.adopet.tutor.repository.TutorRepository;
 import lombok.extern.slf4j.Slf4j;

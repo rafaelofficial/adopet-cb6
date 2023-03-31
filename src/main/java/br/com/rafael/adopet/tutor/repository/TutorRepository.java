@@ -1,6 +1,6 @@
 package br.com.rafael.adopet.tutor.repository;
 
-import br.com.rafael.adopet.tutor.entities.Tutor;
+import br.com.rafael.adopet.tutor.domain.Tutor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
