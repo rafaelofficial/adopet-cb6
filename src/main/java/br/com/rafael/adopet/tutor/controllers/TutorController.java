@@ -1,14 +1,11 @@
 package br.com.rafael.adopet.tutor.controllers;
 
 
-import br.com.rafael.adopet.tutor.domain.Tutor;
 import br.com.rafael.adopet.tutor.dto.TutorDto;
 import br.com.rafael.adopet.tutor.services.TutorService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/adopet/tutor")
@@ -21,8 +18,15 @@ public class TutorController {
 		}
 
 		@PostMapping
-		public ResponseEntity<TutorDto> createTutor(@RequestBody Tutor tutor) {
-				var newTutor = this.tutorService.createTutor(tutor);
-				return ResponseEntity.ok().body(newTutor.toTutorDto());
+		public ResponseEntity<TutorDto> createTutor(@RequestBody TutorDto newTutorDto) {
+				var tutor = this.tutorService.createTutor(newTutorDto);
+				return new ResponseEntity<>(tutor.toTutorDto(), HttpStatus.CREATED);
+		}
+
+		@PutMapping("/{id}")
+		public ResponseEntity<TutorDto> updateTutor(@RequestBody TutorDto tutorDto, @PathVariable Long id) {
+				tutorDto.setId(id);
+				var updatedTutor = this.tutorService.updateTutor(tutorDto);
+				return new ResponseEntity<>(updatedTutor.toTutorDto(), HttpStatus.NO_CONTENT);
 		}
 }

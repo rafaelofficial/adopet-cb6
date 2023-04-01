@@ -3,6 +3,7 @@ package br.com.rafael.adopet.tutor.domain;
 import br.com.rafael.adopet.tutor.dto.TutorDto;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -29,7 +30,12 @@ public class Tutor {
 		private String about;
 
 		@CreationTimestamp
+		@Column(updatable = false)
 		private LocalDateTime createdAt;
+
+		@UpdateTimestamp
+		@Column(insertable = false)
+		private LocalDateTime updatedAt;
 
 		public TutorDto toTutorDto() {
 				return TutorDto.builder()
@@ -41,7 +47,6 @@ public class Tutor {
 						.city(this.city)
 						.pictureProfileUrl(this.pictureProfileUrl)
 						.about(this.about)
-						.createdAt(this.createdAt)
-						.build();
+				.build();
 		}
 }
