@@ -8,6 +8,7 @@ import br.com.rafael.adopet.tutor.repository.TutorRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,5 +59,14 @@ public class TutorService {
 						});
 
 				return tutorRepository.save(optionalTutor.orElseThrow());
+		}
+
+		public List<Tutor> findAllTutor() {
+				var isTutors = this.tutorRepository.findAll();
+				if (isTutors.isEmpty()) {
+						throw new ResourceNotFoundException("Tutor not found!");
+				}
+
+				return isTutors;
 		}
 }
